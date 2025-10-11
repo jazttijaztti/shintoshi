@@ -27,7 +27,7 @@ get_header(); ?>
             </h1>
             </div>
             <div class="main-mv__visual is-show">
-                <?php $image_slides = SCF::get('top_slider_images', 14);
+                <?php $image_slides = SCF::get('top_slider_images', 25);
                 if (!empty($image_slides)) : ?>
                 <div class="main-mv__image">
                     <?php foreach ($image_slides as $i => $row) :

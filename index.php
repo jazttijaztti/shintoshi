@@ -12,7 +12,18 @@ get_header(); ?>
         <div class="main-mv layout-main-mv">
             <div class="main-mv__inner">
             <h1 class="main-mv__title title">
-                <?= get_option('general_top_title'); ?>
+                <!-- <?= get_option('general_top_title'); ?> -->
+                <span class="title__main title__main--catch1"
+                    style="-webkit-mask-image: url('<?= wp_get_attachment_url(get_option('general_title_image_above')); ?>');
+                        mask-image: url('<?= wp_get_attachment_url(get_option('general_title_image_above')); ?>');">
+                    <span>人生を、</span>
+                </span>
+                <br />
+                <span class="title__main title__main--catch2"
+                    style="-webkit-mask-image: url('<?= wp_get_attachment_url(get_option('general_title_image_bottom')); ?>');
+                        mask-image: url('<?= wp_get_attachment_url(get_option('general_title_image_bottom')); ?>');">
+                    <span>最大化する。</span>
+                </span>
             </h1>
             </div>
             <div class="main-mv__visual is-show">

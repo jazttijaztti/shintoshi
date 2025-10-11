@@ -188,35 +188,129 @@ function general_footer_logo_text_render() {
     <?php
 }
 
-// ====================================
-// トップタイトルテキスト / Top Title Text
-// ====================================
-function general_top_title() {
+// =============================================
+// トップタイトル画像（上部）/ Top Title Image above
+// =============================================
+function general_title_image_above() {
     // register setting
-    register_setting('general', 'general_top_title', array(
-        'type'              => 'string',
-        'sanitize_callback' => 'wp_kses_post',
-        'default'           => '',
-    ));
+    register_setting('general', 'general_title_image_above');
 
     // add field
     add_settings_field(
-        'general_top_title',        // ID
-        'トップタイトルテキスト',           // Label
-        'general_top_title_render', // Callback
-        'general'                   // Page target
+        'general_title_image_above',
+        'トップタイトル画像（上部）',
+        'general_title_image_above_render',
+        'general'
     );
 }
-add_action('admin_init', 'general_top_title');
+add_action('admin_init', 'general_title_image_above');
 
 // render field
-function general_top_title_render() {
-    $value = get_option('general_top_title', '');
+function general_title_image_above_render() {
+    $image_id = get_option('general_title_image_above');
+    $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
+
     ?>
-    <textarea id="general_top_title" name="general_top_title" rows="10" cols="20" class="large-text"><?=
-        esc_textarea($value);
-    ?></textarea>
-    <p class="description">Masukkan teks panjang (misalnya footer note atau custom script).</p>
+    <div>
+        <img id="general_title_image_above_preview" src="<?= esc_url($image_url); ?>" style="max-width:150px;<?php if(!$image_url) echo 'display:none;'; ?>" />
+        <input type="hidden" id="general_title_image_above" name="general_title_image_above" value="<?= esc_attr($image_id); ?>" />
+        <button type="button" class="button" id="general_title_image_above_upload">Upload Image</button>
+        <button type="button" class="button" id="general_title_image_above_remove" <?php if(!$image_id) echo 'style="display:none;"'; ?>>Remove</button>
+    </div>
+
+    <script>
+    jQuery(document).ready(function($){
+        var frame;
+        $('#general_title_image_above_upload').on('click', function(e){
+            e.preventDefault();
+            if (frame) {
+                frame.open();
+                return;
+            }
+            frame = wp.media({
+                title: 'Select or Upload Image',
+                button: { text: 'Use this image' },
+                multiple: false
+            });
+            frame.on('select', function(){
+                var attachment = frame.state().get('selection').first().toJSON();
+                $('#general_title_image_above').val(attachment.id);
+                $('#general_title_image_above_preview').attr('src', attachment.url).show();
+                $('#general_title_image_above_remove').show();
+            });
+            frame.open();
+        });
+
+        $('#general_title_image_above_remove').on('click', function(){
+            $('#general_title_image_above').val('');
+            $('#general_title_image_above_preview').hide();
+            $(this).hide();
+        });
+    });
+    </script>
+    <?php
+}
+
+// ==============================================
+// トップタイトル画像（下部） / Top Title Image bottom
+// ==============================================
+function general_title_image_bottom() {
+    // register setting
+    register_setting('general', 'general_title_image_bottom');
+
+    // add field
+    add_settings_field(
+        'general_title_image_bottom',
+        'トップタイトル画像（下部）',
+        'general_title_image_bottom_render',
+        'general'
+    );
+}
+add_action('admin_init', 'general_title_image_bottom');
+
+// render field
+function general_title_image_bottom_render() {
+    $image_id = get_option('general_title_image_bottom');
+    $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
+
+    ?>
+    <div>
+        <img id="general_title_image_bottom_preview" src="<?= esc_url($image_url); ?>" style="max-width:150px;<?php if(!$image_url) echo 'display:none;'; ?>" />
+        <input type="hidden" id="general_title_image_bottom" name="general_title_image_bottom" value="<?= esc_attr($image_id); ?>" />
+        <button type="button" class="button" id="general_title_image_bottom_upload">Upload Image</button>
+        <button type="button" class="button" id="general_title_image_bottom_remove" <?php if(!$image_id) echo 'style="display:none;"'; ?>>Remove</button>
+    </div>
+
+    <script>
+    jQuery(document).ready(function($){
+        var frame;
+        $('#general_title_image_bottom_upload').on('click', function(e){
+            e.preventDefault();
+            if (frame) {
+                frame.open();
+                return;
+            }
+            frame = wp.media({
+                title: 'Select or Upload Image',
+                button: { text: 'Use this image' },
+                multiple: false
+            });
+            frame.on('select', function(){
+                var attachment = frame.state().get('selection').first().toJSON();
+                $('#general_title_image_bottom').val(attachment.id);
+                $('#general_title_image_bottom_preview').attr('src', attachment.url).show();
+                $('#general_title_image_bottom_remove').show();
+            });
+            frame.open();
+        });
+
+        $('#general_title_image_bottom_remove').on('click', function(){
+            $('#general_title_image_bottom').val('');
+            $('#general_title_image_bottom_preview').hide();
+            $(this).hide();
+        });
+    });
+    </script>
     <?php
 }
 

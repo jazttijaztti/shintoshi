@@ -2648,17 +2648,17 @@ body.is-drawer-open {
 }
 
 .title__main.title__main--catch1 {
-	-webkit-mask-image: url(../images/common/mv_title1.svg);
+	/* -webkit-mask-image: url(../images/common/mv_title1.svg); */
 	aspect-ratio: 459.1/135.4;
-	mask-image: url(../images/common/mv_title1.svg);
+	/* mask-image: url(../images/common/mv_title1.svg); */
 	width: 28.71875rem;
 }
 
 .title__main.title__main--catch2 {
-	-webkit-mask-image: url(../images/common/mv_title2.svg);
+	/* -webkit-mask-image: url(../images/common/mv_title2.svg); */
 	aspect-ratio: 744.7/138.1;
 	margin-top: 2rem;
-	mask-image: url(../images/common/mv_title2.svg);
+	/* mask-image: url(../images/common/mv_title2.svg); */
 	width: 46.4375rem;
 }
 

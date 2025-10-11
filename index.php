@@ -155,7 +155,7 @@ get_header(); ?>
             <div class="line-horizontal"></div>
             <div class="line-horizontal line-horizontal--bottom"></div>
             <ul class="special-loop__list">
-                <?php $logos = SCF::get('company_logos', 90); // ID for "Top Page" page
+                <?php $logos = SCF::get('company_logos', 34); // ID for "Top Page" page
                 if (!empty($logos)) :
                     foreach ($logos as $item) : ?>
                         <li class="special-loop__item">

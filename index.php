@@ -269,7 +269,7 @@ get_header(); ?>
                                 <?php endif; ?>
 
                                 <div class="environment__image">
-                                    <img src="<?= esc_url(get_field('thumbnail', $post->ID)); ?>"
+                                    <img src="<?= esc_url(get_field('thumbnail_pc', $post->ID)); ?>"
                                         alt="<?= esc_attr(get_the_title($post->ID)); ?>" />
                                 </div>
                                 <div class="environment__arrow-link arrow-link arrow-link--environment">

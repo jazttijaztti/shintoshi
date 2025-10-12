@@ -50,7 +50,7 @@ get_header(); ?>
                 </div>
 
                 <div class="single-blog__image">
-                <img src="<?= the_field('thumbnail') ?>" alt="" />
+                <img src="<?= the_field('thumbnail_pc') ?>" alt="" />
                 </div>
             </div>
             </div>

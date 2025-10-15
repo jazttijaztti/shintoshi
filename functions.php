@@ -76,10 +76,10 @@ function general_logo_text() {
 
     // add field
     add_settings_field(
-        'general_logo_text',        // ID
-        'ロゴテキスト',                // Label
+        'general_logo_text', // ID
+        'ロゴテキスト', // Label
         'general_logo_text_render', // Callback
-        'general'                   // Page target
+        'general' // Page target
     );
 }
 add_action('admin_init', 'general_logo_text');
@@ -170,10 +170,10 @@ function general_footer_logo_text() {
 
     // add field
     add_settings_field(
-        'general_footer_logo_text',        // ID
-        'フッターロゴテキスト',                // Label
+        'general_footer_logo_text', // ID
+        'フッターロゴテキスト', // Label
         'general_footer_logo_text_render', // Callback
-        'general'                   // Page target
+        'general' // Page target
     );
 }
 add_action('admin_init', 'general_footer_logo_text');
@@ -327,10 +327,10 @@ function general_slide_text() {
 
     // add field
     add_settings_field(
-        'general_slide_text',        // ID
-        'スライドテキスト',           // Label
+        'general_slide_text', // ID
+        'スライドテキスト', // Label
         'general_slide_text_render', // Callback
-        'general'                   // Page target
+        'general' // Page target
     );
 }
 add_action('admin_init', 'general_slide_text');
@@ -381,10 +381,10 @@ function general_footer_text() {
     ));
 
     add_settings_field(
-        'general_footer_text',          // ID field
-        'フッター著作権テキスト',        // Label
-        'general_footer_text_render',   // Callback
-        'general'                       // Page target
+        'general_footer_text', // ID field
+        'フッター著作権テキスト', // Label
+        'general_footer_text_render', // Callback
+        'general' // Page target
     );
 }
 add_action('admin_init', 'general_footer_text');
@@ -488,10 +488,10 @@ function general_special_content_text() {
     ));
 
     add_settings_field(
-        'general_special_content_text',          // ID field
-        'Special Content',       // Label
-        'general_special_content_text_render',   // Callback
-        'general'                       // Page target
+        'general_special_content_text', // ID field
+        'Special Content', // Label
+        'general_special_content_text_render', // Callback
+        'general' // Page target
     );
 }
 add_action('admin_init', 'general_special_content_text');
@@ -513,10 +513,10 @@ function general_special_content_title_text() {
     ));
 
     add_settings_field(
-        'general_special_content_title_text',          // ID field
-        'スペシャルコンテンツタイトル',       // Label
-        'general_special_content_title_text_render',   // Callback
-        'general'                       // Page target
+        'general_special_content_title_text', // ID field
+        'スペシャルコンテンツタイトル', // Label
+        'general_special_content_title_text_render', // Callback
+        'general' // Page target
     );
 }
 add_action('admin_init', 'general_special_content_title_text');
@@ -558,6 +558,87 @@ function general_special_content_desc_text_render() {
     <?php
 }
 
+// ============
+// Member Text
+// ============
+function general_member_text() {
+    register_setting('general', 'general_member_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_member_text', // ID field
+        'Member', // Label
+        'general_member_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_member_text');
+
+// Render input field
+function general_member_text_render() {
+    $value = get_option('general_member_text', '');
+    echo '<input type="text" id="general_member_text" name="general_member_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// ===============================
+// メンバーのタイトル / Member Title
+// ===============================
+function general_member_title_text() {
+    register_setting('general', 'general_member_title_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_member_title_text', // ID field
+        'メンバーのタイトル', // Label
+        'general_member_title_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_member_title_text');
+
+// Render input field
+function general_member_title_text_render() {
+    $value = get_option('general_member_title_text', '');
+    echo '<input type="text" id="general_member_title_text" name="general_member_title_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// ==================================
+// メンバーの説明 / Member Description
+// ==================================
+function general_member_desc_text() {
+    // register setting
+    register_setting('general', 'general_member_desc_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'wp_kses_post',
+        'default'           => '',
+    ));
+
+    // add field
+    add_settings_field(
+        'general_member_desc_text', // ID
+        'メンバーの説明',  // Label
+        'general_member_desc_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_member_desc_text');
+
+// render field
+function general_member_desc_text_render() {
+    $value = get_option('general_member_desc_text', '');
+    ?>
+    <textarea id="general_member_desc_text" name="general_member_desc_text" rows="2" cols="20" class="large-text"><?=
+        esc_textarea($value);
+    ?></textarea>
+    <?php
+}
+
 // ====================
 // culture Content Text
 // ====================
@@ -569,10 +650,10 @@ function general_culture_content_text() {
     ));
 
     add_settings_field(
-        'general_culture_content_text',          // ID field
-        'Culture Content',       // Label
-        'general_culture_content_text_render',   // Callback
-        'general'                       // Page target
+        'general_culture_content_text', // ID field
+        'Culture Content', // Label
+        'general_culture_content_text_render', // Callback
+        'general' // Page target
     );
 }
 add_action('admin_init', 'general_culture_content_text');
@@ -594,10 +675,10 @@ function general_culture_content_title_text() {
     ));
 
     add_settings_field(
-        'general_culture_content_title_text',          // ID field
-        'カルチャーや理念',       // Label
-        'general_culture_content_title_text_render',   // Callback
-        'general'                       // Page target
+        'general_culture_content_title_text', // ID field
+        'カルチャーや理念', // Label
+        'general_culture_content_title_text_render', // Callback
+        'general' // Page target
     );
 }
 add_action('admin_init', 'general_culture_content_title_text');

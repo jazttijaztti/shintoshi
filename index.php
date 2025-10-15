@@ -124,12 +124,11 @@ get_header(); ?>
             <div class="people__wrap">
                 <div class="people__content">
                 <h2 class="people__title title">
-                    <span class="title__sub">member</span><br />
-                    <span class="title__main">新都市企画で働く人々</span>
+                    <span class="title__sub"><?= get_option('general_member_text'); ?></span><br />
+                    <span class="title__main"><?= get_option('general_member_title_text'); ?></span>
                 </h2>
                 <p class="people__text">
-                    自らの情熱を原動力に、人生を最大化する変革の機会をつかみ取ってきた新都市企画社員へのインタビューをご紹介します。<br />
-                    あなたらしく働く未来をイメージするヒントを見つけてみませんか。
+                    <?= get_option('general_member_desc_text'); ?>
                 </p>
                 <a class="people__arrow-link arrow-link" href="<?= home_url() . "/staff/"; ?>">
                     <span class="arrow-link__icon"></span>

@@ -9,9 +9,9 @@
 
         <nav class="header__nav">
             <ul class="header__nav-list">
-                <li class="header__nav-item"><a href="<?= home_url() . "/business/"; ?>" class="header__nav-link">事業紹介</a></li>
-                <li class="header__nav-item"><a href="<?= home_url() . "/staff/"; ?>" class="header__nav-link">働く人々</a></li>
-                <li class="header__nav-item header__nav-item--has-sub js-has-sub"><a href="#" class="header__nav-link header__nav-link--has-sub">スペシャルコンテンツ<span class="header__icon js-toggle-icon">+</span></a>
+                <li class="header__nav-item"><a href="<?= home_url() . "/business/"; ?>" class="header__nav-link"><?= get_option('general_header_menu_1_text'); ?></a></li>
+                <li class="header__nav-item"><a href="<?= home_url() . "/staff/"; ?>" class="header__nav-link"><?= get_option('general_header_menu_2_text'); ?></a></li>
+                <li class="header__nav-item header__nav-item--has-sub js-has-sub"><a href="#" class="header__nav-link header__nav-link--has-sub"><?= get_option('general_header_menu_3_text'); ?><span class="header__icon js-toggle-icon">+</span></a>
                     <ul class="header__sublist">
                     <?php
                     $jobs_query = new WP_Query([
@@ -35,7 +35,7 @@
                     </ul>
                 </li>
                 <li class="header__nav-item header__nav-item--has-sub js-has-sub">
-                    <a href="#" class="header__nav-link header__nav-link--has-sub">働く環境・カルチャー<span class="header__icon js-toggle-icon">+</span></a>
+                    <a href="#" class="header__nav-link header__nav-link--has-sub"><?= get_option('general_header_menu_4_text'); ?><span class="header__icon js-toggle-icon">+</span></a>
                     <ul class="header__sublist">
                         <?php
                         $selected_posts = (array) get_option('selected_blogs_on_top_page', []);
@@ -53,7 +53,7 @@
                         <?php endforeach; wp_reset_postdata(); endif; ?>
                     </ul>
                 </li>
-                <li class="header__nav-item"><a href="<?= esc_url(get_permalink(get_option('selected_entry_link'))); ?>" class="header__nav-link">募集要項</a></li>
+                <li class="header__nav-item"><a href="<?= esc_url(get_permalink(get_option('selected_entry_link'))); ?>" class="header__nav-link"><?= get_option('general_header_menu_5_text'); ?></a></li>
                 <li class="header__nav-item header__nav-item--entry entry-button"><a href="<?= esc_url(get_permalink(get_option('selected_entry_link'))); ?>" class="entry-button__link">ENTRY</a></li>
             </ul>
         </nav>

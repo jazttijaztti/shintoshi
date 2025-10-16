@@ -8,17 +8,17 @@
 
             <div class="footer__nav-block">
                 <ul class="footer__nav-list">
-                    <li class="footer__nav-item"><a href="<?= home_url(); ?>">トップページ</a></li>
+                    <li class="footer__nav-item"><a href="<?= home_url(); ?>"><?= get_option('general_footer_menu_1_text'); ?></a></li>
                 </ul>
                 <ul class="footer__nav-list">
-                    <li class="footer__nav-item"><a href="<?= home_url() . "/business/"; ?>">事業紹介</a></li>
-                    <li class="footer__nav-item"><a href="<?= home_url() . "/staff/"; ?>">働く人々</a></li>
+                    <li class="footer__nav-item"><a href="<?= home_url() . "/business/"; ?>"><?= get_option('general_footer_menu_2_text'); ?></a></li>
+                    <li class="footer__nav-item"><a href="<?= home_url() . "/staff/"; ?>"><?= get_option('general_footer_menu_3_text'); ?></a></li>
                 </ul>
             </div>
 
             <div class="footer__nav-block">
                 <ul class="footer__nav-list">
-                    <li class="footer__nav-item">スペシャルコンテンツ</li>
+                    <li class="footer__nav-item"><?= get_option('general_footer_menu_4_text'); ?></li>
                     <?php
                     $jobs_query = new WP_Query([
                         'post_type' => 'post',
@@ -40,7 +40,7 @@
                     <?php endwhile; else : echo '記事がありません。'; endif; wp_reset_postdata(); ?>
                 </ul>
                 <ul class="footer__nav-list">
-                    <li class="footer__nav-item">働く環境・カルチャー</li>
+                    <li class="footer__nav-item"><?= get_option('general_footer_menu_5_text'); ?></li>
                     <?php
                     $selected_posts = (array) get_option('selected_blogs_on_top_page', []);
                     if (!empty($selected_posts)) :
@@ -59,15 +59,15 @@
             </div>
             <ul class="footer__nav-list">
                 <li class="footer__nav-item">
-                    <a href="<?= esc_url(get_permalink(get_option('selected_entry_link'))); ?>">募集要項・選考フロー</a>
+                    <a href="<?= esc_url(get_permalink(get_option('selected_entry_link'))); ?>"><?= get_option('general_footer_menu_6_text'); ?></a>
                 </li>
             </ul>
         </nav>
     </div>
     <div class="footer__bottom">
         <div class="footer__link-group">
-            <a href="<?= home_url() . "/corporate/"; ?>" class="footer__link">コーポレートサイト</a>
-            <a href="<?= home_url() . "/privacy-policy/"; ?>" class="footer__link">プライバシーポリシー</a>
+            <a href="<?= home_url() . "/corporate/"; ?>" class="footer__link"><?= get_option('general_footer_menu_7_text'); ?></a>
+            <a href="<?= home_url() . "/privacy-policy/"; ?>" class="footer__link"><?= get_option('general_footer_menu_8_text'); ?></a>
         </div>
         <small class="footer__copyright"><?= get_option('general_footer_text'); ?></small>
     </div>

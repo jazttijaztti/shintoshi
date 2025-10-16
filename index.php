@@ -58,12 +58,11 @@ get_header(); ?>
             <div class="business__content">
                 <div class="business__content-left">
                 <h2 class="business__title title">
-                    <span class="title__sub">our business</span><br />
-                    <span class="title__main">事業紹介</span>
+                    <span class="title__sub"><?= get_option('general_business_text'); ?></span><br />
+                    <span class="title__main"><?= get_option('general_business_title_text'); ?></span>
                 </h2>
                 <p class="business__text">
-                    創業当時から変わらないことは、「都市空間のあるべき未来を追求する」という揺るぎない企業姿勢。<br />
-                    開発・再生・保有を軸に、レジンデンス・オフィスビル・商業施設・宿泊施設と、幅広く展開している事業についてご紹介します。
+                    <?= get_option('general_business_desc_text'); ?>
                 </p>
                 <a class="business__link arrow-link" href="<?= home_url() . "/business/"; ?>">
                     <span class="arrow-link__icon"></span>

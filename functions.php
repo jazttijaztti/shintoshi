@@ -477,6 +477,87 @@ function render_selected_blogs_on_business_field() {
     echo '</select>';
 }
 
+// ============
+// Business Text
+// ============
+function general_business_text() {
+    register_setting('general', 'general_business_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_business_text', // ID field
+        'Business', // Label
+        'general_business_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_business_text');
+
+// Render input field
+function general_business_text_render() {
+    $value = get_option('general_business_text', '');
+    echo '<input type="text" id="general_business_text" name="general_business_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// ================================
+// ビジネス名 / Business Title
+// ================================
+function general_business_title_text() {
+    register_setting('general', 'general_business_title_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_business_title_text', // ID field
+        'ビジネス名', // Label
+        'general_business_title_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_business_title_text');
+
+// Render input field
+function general_business_title_text_render() {
+    $value = get_option('general_business_title_text', '');
+    echo '<input type="text" id="general_business_title_text" name="general_business_title_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// ===================================
+// ビジネス紹介 / Business Description
+// ===================================
+function general_business_desc_text() {
+    // register setting
+    register_setting('general', 'general_business_desc_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'wp_kses_post',
+        'default'           => '',
+    ));
+
+    // add field
+    add_settings_field(
+        'general_business_desc_text', // ID
+        'ビジネス紹介',  // Label
+        'general_business_desc_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_business_desc_text');
+
+// render field
+function general_business_desc_text_render() {
+    $value = get_option('general_business_desc_text', '');
+    ?>
+    <textarea id="general_business_desc_text" name="general_business_desc_text" rows="2" cols="20" class="large-text"><?=
+        esc_textarea($value);
+    ?></textarea>
+    <?php
+}
+
 // ====================
 // Special Content Text
 // ====================
@@ -760,6 +841,331 @@ function render_selected_entry_link_field() {
         echo '<option value="'. esc_attr($post->ID) .'" '. $is_selected .'>'. esc_html($post->post_title) .'</option>';
     }
     echo '</select>';
+}
+
+// =============
+// Header Menu 1
+// =============
+function general_header_menu_1_text() {
+    register_setting('general', 'general_header_menu_1_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_header_menu_1_text', // ID field
+        'Header Menu 1', // Label
+        'general_header_menu_1_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_header_menu_1_text');
+
+// Render input field
+function general_header_menu_1_text_render() {
+    $value = get_option('general_header_menu_1_text', '');
+    echo '<input type="text" id="general_header_menu_1_text" name="general_header_menu_1_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Header Menu 2
+// =============
+function general_header_menu_2_text() {
+    register_setting('general', 'general_header_menu_2_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_header_menu_2_text', // ID field
+        'Header Menu 2', // Label
+        'general_header_menu_2_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_header_menu_2_text');
+
+// Render input field
+function general_header_menu_2_text_render() {
+    $value = get_option('general_header_menu_2_text', '');
+    echo '<input type="text" id="general_header_menu_2_text" name="general_header_menu_2_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Header Menu 3
+// =============
+function general_header_menu_3_text() {
+    register_setting('general', 'general_header_menu_3_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_header_menu_3_text', // ID field
+        'Header Menu 3', // Label
+        'general_header_menu_3_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_header_menu_3_text');
+
+// Render input field
+function general_header_menu_3_text_render() {
+    $value = get_option('general_header_menu_3_text', '');
+    echo '<input type="text" id="general_header_menu_3_text" name="general_header_menu_3_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Header Menu 4
+// =============
+function general_header_menu_4_text() {
+    register_setting('general', 'general_header_menu_4_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_header_menu_4_text', // ID field
+        'Header Menu 4', // Label
+        'general_header_menu_4_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_header_menu_4_text');
+
+// Render input field
+function general_header_menu_4_text_render() {
+    $value = get_option('general_header_menu_4_text', '');
+    echo '<input type="text" id="general_header_menu_4_text" name="general_header_menu_4_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Header Menu 5
+// =============
+function general_header_menu_5_text() {
+    register_setting('general', 'general_header_menu_5_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_header_menu_5_text', // ID field
+        'Header Menu 5', // Label
+        'general_header_menu_5_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_header_menu_5_text');
+
+// Render input field
+function general_header_menu_5_text_render() {
+    $value = get_option('general_header_menu_5_text', '');
+    echo '<input type="text" id="general_header_menu_5_text" name="general_header_menu_5_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Footer Menu 1
+// =============
+function general_footer_menu_1_text() {
+    register_setting('general', 'general_footer_menu_1_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_footer_menu_1_text', // ID field
+        'Footer Menu 1', // Label
+        'general_footer_menu_1_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_footer_menu_1_text');
+
+// Render input field
+function general_footer_menu_1_text_render() {
+    $value = get_option('general_footer_menu_1_text', '');
+    echo '<input type="text" id="general_footer_menu_1_text" name="general_footer_menu_1_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Footer Menu 2
+// =============
+function general_footer_menu_2_text() {
+    register_setting('general', 'general_footer_menu_2_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_footer_menu_2_text', // ID field
+        'Footer Menu 2', // Label
+        'general_footer_menu_2_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_footer_menu_2_text');
+
+// Render input field
+function general_footer_menu_2_text_render() {
+    $value = get_option('general_footer_menu_2_text', '');
+    echo '<input type="text" id="general_footer_menu_2_text" name="general_footer_menu_2_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Footer Menu 3
+// =============
+function general_footer_menu_3_text() {
+    register_setting('general', 'general_footer_menu_3_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_footer_menu_3_text', // ID field
+        'Footer Menu 3', // Label
+        'general_footer_menu_3_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_footer_menu_3_text');
+
+// Render input field
+function general_footer_menu_3_text_render() {
+    $value = get_option('general_footer_menu_3_text', '');
+    echo '<input type="text" id="general_footer_menu_3_text" name="general_footer_menu_3_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Footer Menu 4
+// =============
+function general_footer_menu_4_text() {
+    register_setting('general', 'general_footer_menu_4_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_footer_menu_4_text', // ID field
+        'Footer Menu 4', // Label
+        'general_footer_menu_4_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_footer_menu_4_text');
+
+// Render input field
+function general_footer_menu_4_text_render() {
+    $value = get_option('general_footer_menu_4_text', '');
+    echo '<input type="text" id="general_footer_menu_4_text" name="general_footer_menu_4_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Footer Menu 5
+// =============
+function general_footer_menu_5_text() {
+    register_setting('general', 'general_footer_menu_5_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_footer_menu_5_text', // ID field
+        'Footer Menu 5', // Label
+        'general_footer_menu_5_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_footer_menu_5_text');
+
+// Render input field
+function general_footer_menu_5_text_render() {
+    $value = get_option('general_footer_menu_5_text', '');
+    echo '<input type="text" id="general_footer_menu_5_text" name="general_footer_menu_5_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Footer Menu 6
+// =============
+function general_footer_menu_6_text() {
+    register_setting('general', 'general_footer_menu_6_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_footer_menu_6_text', // ID field
+        'Footer Menu 6', // Label
+        'general_footer_menu_6_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_footer_menu_6_text');
+
+// Render input field
+function general_footer_menu_6_text_render() {
+    $value = get_option('general_footer_menu_6_text', '');
+    echo '<input type="text" id="general_footer_menu_6_text" name="general_footer_menu_6_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Footer Menu 7
+// =============
+function general_footer_menu_7_text() {
+    register_setting('general', 'general_footer_menu_7_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_footer_menu_7_text', // ID field
+        'Footer Menu 7', // Label
+        'general_footer_menu_7_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_footer_menu_7_text');
+
+// Render input field
+function general_footer_menu_7_text_render() {
+    $value = get_option('general_footer_menu_7_text', '');
+    echo '<input type="text" id="general_footer_menu_7_text" name="general_footer_menu_7_text" value="' . esc_attr($value) . '" class="regular-text" />';
+}
+
+// =============
+// Footer Menu 8
+// =============
+function general_footer_menu_8_text() {
+    register_setting('general', 'general_footer_menu_8_text', array(
+        'type'              => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default'           => '',
+    ));
+
+    add_settings_field(
+        'general_footer_menu_8_text', // ID field
+        'Footer Menu 8', // Label
+        'general_footer_menu_8_text_render', // Callback
+        'general' // Page target
+    );
+}
+add_action('admin_init', 'general_footer_menu_8_text');
+
+// Render input field
+function general_footer_menu_8_text_render() {
+    $value = get_option('general_footer_menu_8_text', '');
+    echo '<input type="text" id="general_footer_menu_8_text" name="general_footer_menu_8_text" value="' . esc_attr($value) . '" class="regular-text" />';
 }
 
 // ===================================

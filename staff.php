@@ -18,8 +18,8 @@ get_header(); ?>
         <div class="sub-business__inner scroll-target">
           <div class="sub-business__content">
             <h1 class="sub-business__title title">
-              <span class="title__sub">member</span><br />
-              <span class="title__main">新都市企画で働く人々</span>
+              <span class="title__sub"><?= get_option('general_member_text'); ?></span><br />
+              <span class="title__main"><?= get_option('general_member_title_text'); ?></span>
             </h1>
           </div>
         </div>
@@ -83,42 +83,52 @@ get_header(); ?>
               <!-- ボーダー要素を追加 -->
               <div class="sub-environment__content">
                   <div class="line-horizontal"></div>
-                  <a class="sub-environment__left" href="#">
-                      <div class="sub-environment__image">
-                      <img src="<?= get_template_directory_uri(); ?>/assets/images/common/culture_img01.webp" alt="" />
-                      </div>
-                      <div class="sub-environment__link">
-                      <div class="sub-environment__wrap">
-                          <div class="sub-environment__text-wrap">
-                              <span class="sub-environment__text-sub">事業実績一覧をみるdd</span>
-                              <span class="sub-environment__text">実績紹介</span>
-                          </div>
-                          <span class="sub-environment__icon"></span>
-                      </div>
-                      </div>
-                  </a>
+                  <?php
+                    $selected_posts = (array) get_option('selected_blogs_on_business', []);
 
-                  <!-- 左右の間の縦線 -->
-                  <div class="line-vertical line-vertical--center u-desktop"></div>
+                    if (!empty($selected_posts)) :
+                        $posts = get_posts([
+                            'post_type' => 'post',
+                            'post__in'  => $selected_posts,
+                            'orderby'   => 'post__in',
+                            'numberposts' => 2
+                        ]);
 
-                  <a class="sub-environment__right" href="#">
-                      <div class="line-horizontal u-mobile"></div>
-                      <div class="sub-environment__image">
-                      <img
-                          src="<?= get_template_directory_uri(); ?>/assets/images/common/culture_img02_coming.webp"
-                          alt=""/>
-                      </div>
+                        $i = 0;
+                        foreach ($posts as $post) :
+                            setup_postdata($post);
+                            $i++;
+                            $class = ($i === 1) ? 'environment__left' : 'environment__right';
+                            ?>
+                            <a class="sub-<?= esc_attr($class); ?>" href="<?= esc_url(get_permalink($post->ID)); ?>">
+                                <?php if ($i === 2) : ?>
+                                    <div class="line-horizontal u-mobile"></div>
+                                <?php endif; ?>
 
-                      <div class="sub-environment__link">
-                          <div class="sub-environment__wrap">
-                              <div class="sub-environment__text-wrap">
-                                <span class="sub-environment__text-sub">個性を、解き放つ。<br class="u-mobile"/>それはプロジェクトを知ればよく分かる。</span>
-                                <span class="sub-environment__text">プロジェクトストーリー</span>
-                              </div>
-                              <span class="sub-environment__icon"></span>
-                          </div>
-                      </div>
-                  </a>
+                                <div class="sub-environment__image">
+                                    <img src="<?= esc_url(get_field('thumbnail_pc', $post->ID)); ?>"
+                                        alt="<?= esc_attr(get_the_title($post->ID)); ?>" />
+                                </div>
+                                <div class="sub-environment__link">
+                                <div class="sub-environment__wrap">
+                                    <div class="sub-environment__text-wrap">
+                                        <span class="sub-environment__text-sub"><?= esc_html(get_field('subtitle', $post->ID)); ?></span>
+                                        <span class="sub-environment__text">
+                                            <?= esc_html(get_the_title($post->ID)); ?></span>
+                                    </div>
+                                    <span class="sub-environment__icon"></span>
+                                </div>
+                                </div>
+                            </a>
+                            <?php if ($i === 1) : ?>
+                                <!-- 左右の間の縦線 -->
+                                <div class="line-vertical line-vertical--center u-desktop"></div>
+                            <?php endif; ?>
+
+                <?php endforeach;
+                        wp_reset_postdata();
+                    endif;
+                    ?>
               </div>
           </div>
       </section>
